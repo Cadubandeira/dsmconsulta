@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa Diagnóstica DSM-5</title>
-    <!-- Use a fonte Inter do Google Fonts -->
+    <title>Pesquisa Diagnóstica DSM-5 (DeepSeek)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS para estilização -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -71,27 +69,21 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center p-4 min-h-screen">
 
-    <!-- Contêiner principal do chat -->
     <div class="chat-container bg-white rounded-2xl shadow-xl">
 
-        <!-- Cabeçalho e descrição -->
         <div class="p-4 border-b border-gray-200">
             <h1 class="text-xl font-bold text-gray-900">Pesquisa Diagnóstica DSM-5</h1>
             <p class="text-sm text-gray-500">
-                Informações de IA baseadas exclusivamente no DSM-5.
+                Informações de IA baseadas exclusivamente no DSM-5 (via DeepSeek).
             </p>
         </div>
 
-        <!-- Área de exibição de mensagens -->
         <div id="messages-container" class="messages">
-            <!-- Mensagem de boas-vindas inicial -->
             <div class="ai-message">
                 Olá! Sou um assistente de IA projetado para fornecer informações exclusivamente do **Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª Edição** (DSM-5). Como posso ajudar você hoje?
             </div>
-            <!-- As mensagens serão anexadas aqui -->
-        </div>
+            </div>
 
-        <!-- Contêiner de entrada e botão -->
         <div class="input-area">
             <input
                 id="search-input"
@@ -115,15 +107,18 @@
             const searchButton = document.getElementById('search-button');
             const messagesContainer = document.getElementById('messages-container');
 
-            // A chave da API é manipulada pelo ambiente do Canvas
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            // **MUDANÇA 1: Insira sua chave da API do DeepSeek aqui**
+            const apiKey = "SUA_CHAVE_API_DEEPSEEK_AQUI"; 
+            // **MUDANÇA 2: URL da API do DeepSeek**
+            const apiUrl = 'https://api.deepseek.com/chat/completions';
 
             // Função para anexar uma mensagem à janela de chat
             function appendMessage(text, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${sender}-message`;
-                messageDiv.innerHTML = text; // Usar innerHTML para permitir negrito do markdown
+                // Simples conversão de markdown **negrito** para <strong>
+                const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                messageDiv.innerHTML = formattedText;
                 messagesContainer.appendChild(messageDiv);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight; // Rolar automaticamente para o final
             }
@@ -132,6 +127,11 @@
             async function handleSearch() {
                 const userQuery = searchInput.value.trim();
                 if (!userQuery) return;
+                
+                if (!apiKey || apiKey === "SUA_CHAVE_API_DEEPSEEK_AQUI") {
+                    appendMessage("<strong>Erro:</strong> A chave da API do DeepSeek não foi configurada. Por favor, edite o código e adicione sua chave na variável `apiKey`.", 'ai');
+                    return;
+                }
 
                 // Anexar a mensagem do usuário ao chat
                 appendMessage(userQuery, 'user');
@@ -151,34 +151,38 @@
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
                 try {
-                    // Criar um prompt muito específico para limitar a base de conhecimento da IA ao DSM-5
-                    const prompt = `Você é um assistente de IA projetado para fornecer informações exclusivamente do "Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª Edição" (DSM-5). Suas respostas devem ser em português e não podem conter nenhuma informação que não seja encontrada neste livro. Se uma consulta não puder ser respondida usando o DSM-5, informe que a informação não está disponível na sua fonte.
+                    // Criar um prompt de sistema para limitar a base de conhecimento da IA
+                    const systemPrompt = `Você é um assistente de IA projetado para fornecer informações exclusivamente do "Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª Edição" (DSM-5). Suas respostas devem ser em português e não podem conter nenhuma informação que não seja encontrada neste livro. Se uma consulta não puder ser respondida usando o DSM-5, informe que a informação não está disponível na sua fonte.`;
 
-Consulta do usuário: ${userQuery}`;
-
-                    let chatHistory = [];
-                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                    const payload = { contents: chatHistory };
-
+                    // **MUDANÇA 3: Estrutura do payload para o DeepSeek**
+                    const payload = {
+                        model: "deepseek-chat", // Modelo recomendado
+                        messages: [
+                            { "role": "system", "content": systemPrompt },
+                            { "role": "user", "content": userQuery }
+                        ]
+                    };
+                    
+                    // **MUDANÇA 4: Configuração da requisição fetch com autenticação Bearer**
                     const response = await fetch(apiUrl, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}` // Autenticação via header
+                        },
                         body: JSON.stringify(payload)
                     });
                     
-                    // Verificar erros HTTP
                     if (!response.ok) {
                         const errorData = await response.json();
-                        throw new Error(`API Error: ${errorData.error.message || response.statusText}`);
+                        throw new Error(`Erro da API: ${errorData.error.message || response.statusText}`);
                     }
 
                     const result = await response.json();
 
-                    // Verificar se a estrutura da resposta é a esperada
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
+                    // **MUDANÇA 5: Processamento da estrutura de resposta do DeepSeek**
+                    if (result.choices && result.choices.length > 0 && result.choices[0].message && result.choices[0].message.content) {
+                        const text = result.choices[0].message.content;
                         messagesContainer.removeChild(loadingMessage);
                         appendMessage(text, 'ai');
                     } else {
