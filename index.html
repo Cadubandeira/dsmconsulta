@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa Diagnóstica DSM-5 (DeepSeek)</title>
+    <title>Pesquisa Diagnóstica DSM-5 (Gemini)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -74,7 +74,7 @@
         <div class="p-4 border-b border-gray-200">
             <h1 class="text-xl font-bold text-gray-900">Pesquisa Diagnóstica DSM-5</h1>
             <p class="text-sm text-gray-500">
-                Informações de IA baseadas exclusivamente no DSM-5 (via DeepSeek).
+                Informações de IA baseadas exclusivamente no DSM-5 (via Gemini).
             </p>
         </div>
 
@@ -102,42 +102,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Obter referências aos elementos DOM
             const searchInput = document.getElementById('search-input');
             const searchButton = document.getElementById('search-button');
             const messagesContainer = document.getElementById('messages-container');
+            
+            // **MUDANÇA 1: Insira sua chave da API do Google Gemini aqui**
+            const apiKey = "AIzaSyAm8MjmrK9_1JaKG9o9jiC_xAPk-_zOgis";
+            
+            // **MUDANÇA 2: URL da API do Gemini com a chave como parâmetro**
+            // Usando um modelo recente. Você pode alterar se necessário.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
-            // **MUDANÇA 1: Insira sua chave da API do DeepSeek aqui**
-            const apiKey = "SUA_CHAVE_API_DEEPSEEK_AQUI"; 
-            // **MUDANÇA 2: URL da API do DeepSeek**
-            const apiUrl = 'https://api.deepseek.com/chat/completions';
-
-            // Função para anexar uma mensagem à janela de chat
             function appendMessage(text, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${sender}-message`;
-                // Simples conversão de markdown **negrito** para <strong>
                 const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 messageDiv.innerHTML = formattedText;
                 messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight; // Rolar automaticamente para o final
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }
 
-            // Função para lidar com a lógica de pesquisa
             async function handleSearch() {
                 const userQuery = searchInput.value.trim();
                 if (!userQuery) return;
                 
-                if (!apiKey || apiKey === "SUA_CHAVE_API_DEEPSEEK_AQUI") {
-                    appendMessage("<strong>Erro:</strong> A chave da API do DeepSeek não foi configurada. Por favor, edite o código e adicione sua chave na variável `apiKey`.", 'ai');
+                if (!apiKey || apiKey === "SUA_CHAVE_API_GEMINI_AQUI") {
+                    appendMessage("<strong>Erro:</strong> A chave da API do Gemini não foi configurada. Por favor, edite o código e adicione sua chave na variável `apiKey`.", 'ai');
                     return;
                 }
 
-                // Anexar a mensagem do usuário ao chat
                 appendMessage(userQuery, 'user');
-                searchInput.value = ''; // Limpar o campo de entrada
+                searchInput.value = '';
 
-                // Anexar um indicador de carregamento
                 const loadingMessage = document.createElement('div');
                 loadingMessage.className = 'ai-message flex items-center gap-2';
                 loadingMessage.innerHTML = `
@@ -151,25 +147,20 @@
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
                 try {
-                    // Criar um prompt de sistema para limitar a base de conhecimento da IA
-                    const systemPrompt = `Você é um assistente de IA projetado para fornecer informações exclusivamente do "Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª Edição" (DSM-5). Suas respostas devem ser em português e não podem conter nenhuma informação que não seja encontrada neste livro. Se uma consulta não puder ser respondida usando o DSM-5, informe que a informação não está disponível na sua fonte.`;
-
-                    // **MUDANÇA 3: Estrutura do payload para o DeepSeek**
-                    const payload = {
-                        model: "deepseek-chat", // Modelo recomendado
-                        messages: [
-                            { "role": "system", "content": systemPrompt },
-                            { "role": "user", "content": userQuery }
-                        ]
-                    };
+                    const prompt = `Você é um assistente de IA projetado para fornecer informações exclusivamente do "Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª Edição" (DSM-5). Suas respostas devem ser em português e não podem conter nenhuma informação que não seja encontrada neste livro. Se uma consulta não puder ser respondida usando o DSM-5, informe que a informação não está disponível na sua fonte.\n\nConsulta do usuário: ${userQuery}`;
                     
-                    // **MUDANÇA 4: Configuração da requisição fetch com autenticação Bearer**
+                    // **MUDANÇA 3: Estrutura do payload para o Gemini**
+                    const payload = {
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
+                    };
+
                     const response = await fetch(apiUrl, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${apiKey}` // Autenticação via header
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
                     
@@ -180,12 +171,18 @@
 
                     const result = await response.json();
 
-                    // **MUDANÇA 5: Processamento da estrutura de resposta do DeepSeek**
-                    if (result.choices && result.choices.length > 0 && result.choices[0].message && result.choices[0].message.content) {
-                        const text = result.choices[0].message.content;
+                    // **MUDANÇA 4: Processamento da estrutura de resposta do Gemini**
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
                         messagesContainer.removeChild(loadingMessage);
                         appendMessage(text, 'ai');
                     } else {
+                        // Trata o caso de a resposta ser bloqueada por segurança
+                        if (result.candidates && result.candidates[0].finishReason === 'SAFETY') {
+                           throw new Error("A resposta foi bloqueada por políticas de segurança.");
+                        }
                         throw new Error("Resposta da API inválida ou vazia do modelo.");
                     }
 
@@ -196,7 +193,6 @@
                 }
             }
 
-            // Escutar o clique do botão e a tecla 'Enter'
             searchButton.addEventListener('click', handleSearch);
             searchInput.addEventListener('keypress', (event) => {
                 if (event.key === 'Enter') {
