@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSM-5 Diagnostic Search</title>
-    <!-- Use the Inter font from Google Fonts -->
+    <title>Pesquisa Diagnóstica DSM-5</title>
+    <!-- Use a fonte Inter do Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS for styling -->
+    <!-- Tailwind CSS para estilização -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -71,73 +71,73 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center p-4 min-h-screen">
 
-    <!-- Main chat container -->
+    <!-- Contêiner principal do chat -->
     <div class="chat-container bg-white rounded-2xl shadow-xl">
 
-        <!-- Header and description -->
+        <!-- Cabeçalho e descrição -->
         <div class="p-4 border-b border-gray-200">
-            <h1 class="text-xl font-bold text-gray-900">DSM-5 Diagnostic Search</h1>
+            <h1 class="text-xl font-bold text-gray-900">Pesquisa Diagnóstica DSM-5</h1>
             <p class="text-sm text-gray-500">
-                AI information based exclusively on the DSM-5.
+                Informações de IA baseadas exclusivamente no DSM-5.
             </p>
         </div>
 
-        <!-- Messages display area -->
+        <!-- Área de exibição de mensagens -->
         <div id="messages-container" class="messages">
-            <!-- Initial welcome message -->
+            <!-- Mensagem de boas-vindas inicial -->
             <div class="ai-message">
-                Hello! I am an AI assistant designed to provide information exclusively from the **DSM-5**. How can I help you today?
+                Olá! Sou um assistente de IA projetado para fornecer informações exclusivamente do **Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª Edição** (DSM-5). Como posso ajudar você hoje?
             </div>
-            <!-- Messages will be appended here -->
+            <!-- As mensagens serão anexadas aqui -->
         </div>
 
-        <!-- Input and button container -->
+        <!-- Contêiner de entrada e botão -->
         <div class="input-area">
             <input
                 id="search-input"
                 type="text"
-                placeholder="Ask a question..."
+                placeholder="Faça uma pergunta..."
                 class="flex-grow p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
             >
             <button
                 id="search-button"
                 class="ml-3 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all"
             >
-                Send
+                Enviar
             </button>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Get references to DOM elements
+            // Obter referências aos elementos DOM
             const searchInput = document.getElementById('search-input');
             const searchButton = document.getElementById('search-button');
             const messagesContainer = document.getElementById('messages-container');
 
-            // API key is handled by the Canvas environment
+            // A chave da API é manipulada pelo ambiente do Canvas
             const apiKey = "";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
-            // Function to append a message to the chat window
+            // Função para anexar uma mensagem à janela de chat
             function appendMessage(text, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${sender}-message`;
-                messageDiv.innerHTML = text; // Use innerHTML to allow for bolding from markdown
+                messageDiv.innerHTML = text; // Usar innerHTML para permitir negrito do markdown
                 messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight; // Auto-scroll to the bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight; // Rolar automaticamente para o final
             }
 
-            // Function to handle the search logic
+            // Função para lidar com a lógica de pesquisa
             async function handleSearch() {
                 const userQuery = searchInput.value.trim();
                 if (!userQuery) return;
 
-                // Append the user's message to the chat
+                // Anexar a mensagem do usuário ao chat
                 appendMessage(userQuery, 'user');
-                searchInput.value = ''; // Clear the input field
+                searchInput.value = ''; // Limpar o campo de entrada
 
-                // Append a loading indicator message
+                // Anexar um indicador de carregamento
                 const loadingMessage = document.createElement('div');
                 loadingMessage.className = 'ai-message flex items-center gap-2';
                 loadingMessage.innerHTML = `
@@ -145,16 +145,16 @@
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <span>Thinking...</span>
+                    <span>Pensando...</span>
                 `;
                 messagesContainer.appendChild(loadingMessage);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
                 try {
-                    // Create a very specific prompt to limit the AI's knowledge base to the DSM-5
-                    const prompt = `You are an AI assistant designed to provide information exclusively from the "Diagnostic and Statistical Manual of Mental Disorders, 5th Edition" (DSM-5). Your responses must not contain any information that is not found within this book. If a query cannot be answered using the DSM-5, state that the information is not available within your source.
+                    // Criar um prompt muito específico para limitar a base de conhecimento da IA ao DSM-5
+                    const prompt = `Você é um assistente de IA projetado para fornecer informações exclusivamente do "Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª Edição" (DSM-5). Suas respostas devem ser em português e não podem conter nenhuma informação que não seja encontrada neste livro. Se uma consulta não puder ser respondida usando o DSM-5, informe que a informação não está disponível na sua fonte.
 
-User query: ${userQuery}`;
+Consulta do usuário: ${userQuery}`;
 
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
@@ -166,7 +166,7 @@ User query: ${userQuery}`;
                         body: JSON.stringify(payload)
                     });
                     
-                    // Check for HTTP errors
+                    // Verificar erros HTTP
                     if (!response.ok) {
                         const errorData = await response.json();
                         throw new Error(`API Error: ${errorData.error.message || response.statusText}`);
@@ -174,7 +174,7 @@ User query: ${userQuery}`;
 
                     const result = await response.json();
 
-                    // Check if the response structure is as expected
+                    // Verificar se a estrutura da resposta é a esperada
                     if (result.candidates && result.candidates.length > 0 &&
                         result.candidates[0].content && result.candidates[0].content.parts &&
                         result.candidates[0].content.parts.length > 0) {
@@ -182,17 +182,17 @@ User query: ${userQuery}`;
                         messagesContainer.removeChild(loadingMessage);
                         appendMessage(text, 'ai');
                     } else {
-                        throw new Error("Invalid or empty API response from the model.");
+                        throw new Error("Resposta da API inválida ou vazia do modelo.");
                     }
 
                 } catch (error) {
                     messagesContainer.removeChild(loadingMessage);
-                    console.error('Error fetching data:', error);
-                    appendMessage(`Sorry, an error occurred: ${error.message}. Please try again.`, 'ai');
+                    console.error('Erro ao buscar dados:', error);
+                    appendMessage(`Desculpe, ocorreu um erro: ${error.message}. Por favor, tente novamente.`, 'ai');
                 }
             }
 
-            // Listen for button click and 'Enter' key press
+            // Escutar o clique do botão e a tecla 'Enter'
             searchButton.addEventListener('click', handleSearch);
             searchInput.addEventListener('keypress', (event) => {
                 if (event.key === 'Enter') {
