@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSM-5 Diagnostic Search</title>
+    <!-- Use the Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        .container {
+            max-width: 800px;
+            min-height: 100vh;
+        }
+        .result-box {
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center p-4">
 
+    <!-- Main content container -->
+    <div class="container bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center gap-6 my-8">
+
+        <!-- Header and description -->
+        <div class="text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">DSM-5 Diagnostic Search</h1>
+            <p class="text-gray-600 max-w-lg mx-auto">
+                Ask a question about a mental health condition, and the AI will provide information exclusively based on the DSM-5.
+            </p>
+        </div>
+
+        <!-- Search input and button container -->
+        <div class="w-full flex flex-col sm:flex-row gap-4">
+            <input
+                id="search-input"
+                type="text"
+                placeholder="e.g., 'What are the criteria for PTSD?'"
+                class="flex-grow p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all"
+            >
+            <button
+                id="search-button"
+                class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all"
+            >
+                Search
+            </button>
+        </div>
+
+        <!-- Status and loading indicator -->
+        <div id="status-message" class="text-sm text-gray-500 min-h-[20px] text-center">
+            Enter a query above to begin.
+        </div>
+
+        <!-- Result display area -->
+        <div id="results" class="w-full bg-gray-50 p-6 rounded-xl shadow-inner border border-gray-200 mt-4 min-h-[200px] overflow-auto result-box">
+            <!-- Results will be displayed here -->
+            <p class="text-gray-400">Your search results will appear here. For professional medical advice, consult a qualified healthcare provider.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get references to DOM elements
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const resultsDiv = document.getElementById('results');
+            const statusMessage = document.getElementById('status-message');
+
+            // API key is handled by the Canvas environment
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            // Function to handle the search logic
+            async function handleSearch() {
+                const userQuery = searchInput.value.trim();
+                if (!userQuery) {
+                    statusMessage.textContent = "Please enter a search query.";
+                    return;
+                }
+
+                // Show loading state
+                statusMessage.textContent = "Searching...";
+                resultsDiv.innerHTML = `<div class="flex justify-center items-center text-blue-500">
+                    <svg class="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>`;
+
+                try {
+                    // Create a very specific prompt to limit the AI's knowledge base to the DSM-5
+                    const prompt = `You are an AI assistant designed to provide information exclusively from the "Diagnostic and Statistical Manual of Mental Disorders, 5th Edition" (DSM-5). Your responses must not contain any information that is not found within this book. If a query cannot be answered using the DSM-5, state that the information is not available within your source.
+
+User query: ${userQuery}`;
+
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        resultsDiv.textContent = text;
+                        statusMessage.textContent = "Search complete. For medical advice, consult a professional.";
+                    } else {
+                        throw new Error("Invalid API response format.");
+                    }
+
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    statusMessage.textContent = "An error occurred. Please try again later.";
+                    resultsDiv.textContent = `Sorry, an error occurred while searching.`;
+                }
+            }
+
+            // Listen for button click and 'Enter' key press
+            searchButton.addEventListener('click', handleSearch);
+            searchInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    handleSearch();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
