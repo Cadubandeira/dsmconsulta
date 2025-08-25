@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa Diagnóstica</title>
-    <!-- Inter font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -16,18 +14,25 @@
             --text-body: #e0e0e0;
             --bg-card: #2d2d2d;
             --text-card: #e0e0e0;
-            --text-card-secondary: #b0b0b0; /* Improved contrast for dark mode */
+            --text-card-secondary: #b0b0b0;
             --bg-input: #1f2937;
             --bg-search-container: #1a1a1a;
+            --bg-sidebar: #1e1e1e;
+            --text-sidebar: #e0e0e0;
+            --bg-sidebar-hover: #2d2d2d;
         }
+
         body.light {
             --bg-body: #f3f4f6;
             --text-body: #1a1a1a;
             --bg-card: #e5e7eb;
             --text-card: #1a1a1a;
-            --text-card-secondary: #374151; /* Improved contrast for light mode */
+            --text-card-secondary: #374151;
             --bg-input: #ffffff;
             --bg-search-container: #f3f4f6;
+            --bg-sidebar: #ffffff;
+            --text-sidebar: #1a1a1a;
+            --bg-sidebar-hover: #e5e7eb;
         }
 
         body {
@@ -37,14 +42,13 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* --- Layout States --- */
         .layout-container {
             max-width: 800px;
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-			padding-top:2rem;
+            padding-top: 2rem;
         }
 
         .initial-layout {
@@ -55,30 +59,29 @@
             min-height: 100vh;
             padding: 1rem;
             text-align: center;
+            margin-left: 80px; /* Adjust for sidebar */
         }
 
         .search-results-layout {
             padding-top: 2rem;
-            padding-bottom: 8rem; /* Space for the fixed search bar */
+            padding-bottom: 8rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            margin-left: 80px; /* Adjust for sidebar */
         }
         
-        /* --- Search Component Positioning --- */
         .search-container {
             padding: 1rem;
             z-index: 10;
         }
 
-        /* Initial state: relative positioning to be centered by the parent flexbox */
         .initial-search-container {
-            margin-top: 2rem; /* Spacing below the title */
+            margin-top: 2rem;
             width: 100%;
-            max-width: 600px; /* Limit width for aesthetics */
+            max-width: 600px;
         }
         
-        /* On-search state: fixed at the bottom */
         .on-search-fixed-bottom {
             position: fixed;
             bottom: 0;
@@ -87,11 +90,11 @@
             background-color: var(--bg-search-container);
             box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: background-color 0.3s ease;
-            display: flex; /* Added for horizontal centering */
-            justify-content: center; /* Added for horizontal centering */
-	padding-bottom:2rem;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 2rem;
         }
-        
+
         @media (min-width: 768px) {
             .on-search-fixed-bottom {
                 left: 50%;
@@ -101,7 +104,6 @@
             }
         }
         
-        /* --- Other shared components --- */
         .message-box {
             background-color: #3b82f6;
             color: white;
@@ -136,26 +138,193 @@
         }
         
         .dark-mode-blue {
-            color: #3b82f6; /* New blue with better contrast for dark mode */
+            color: #3b82f6;
         }
         
         .light-mode-blue {
-            color: #1e40af; /* New blue with better contrast for light mode */
+            color: #1e40af;
         }
 
-        /* Added scroll functionality to the results container */
         .results-container-scrollable {
             flex-grow: 1;
-            overflow-y: auto; /* Enable vertical scrolling */
-            padding-right: 1rem; /* Add some padding to prevent content from touching the scrollbar */
-	padding-down: 0.1rem;
+            overflow-y: auto;
+            padding-right: 1rem;
+            padding-down: 0.1rem;
+        }
 
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 70px;
+            background-color: var(--bg-sidebar);
+            color: var(--text-sidebar);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+            transition: width 0.3s ease, background-color 0.3s ease;
+            overflow-x: hidden;
+            z-index: 20;
+        }
+        
+        .sidebar:hover, .sidebar-expanded {
+            width: 280px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header .logo {
+            display: none;
+            flex-shrink: 0;
+        }
+
+        .sidebar:hover .logo, .sidebar-expanded .logo {
+            display: block;
+        }
+
+        .sidebar-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0 0.5rem;
+        }
+        
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            white-space: nowrap;
+        }
+        
+        .sidebar-menu-item:hover {
+            background-color: var(--bg-sidebar-hover);
+        }
+
+        .sidebar-menu-item .icon {
+            flex-shrink: 0;
+        }
+        
+        .sidebar-menu-item .text {
+            margin-left: 1rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .sidebar:hover .text, .sidebar-expanded .text {
+            opacity: 1;
+        }
+
+        .patient-section {
+            width: 100%;
+            padding: 1rem 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .patient-section h4 {
+            font-weight: 600;
+            padding-left: 1rem;
+            color: var(--text-card-secondary);
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .sidebar:hover .patient-section h4, .sidebar-expanded .patient-section h4 {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
+    
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo text-xl font-bold">Especialista</h1>
+            <button id="burger-menu-btn" class="p-2 rounded-full hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="sidebar-menu">
+            <div class="sidebar-menu-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-home">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span class="text">Início</span>
+            </div>
+            <div class="sidebar-menu-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus-circle">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+                <span class="text">Novo Chat</span>
+            </div>
+        </div>
+        
+        <div class="patient-section">
+            <h4>Pacientes</h4>
+            <div class="sidebar-menu">
+                <a href="#" class="sidebar-menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="text">Maria Silva</span>
+                </a>
+                <a href="#" class="sidebar-menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="text">João Santos</span>
+                </a>
+                <a href="#" class="sidebar-menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="text">Ana Oliveira</span>
+                </a>
+                <a href="#" class="sidebar-menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="text">Pedro Costa</span>
+                </a>
+                <a href="#" class="sidebar-menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="text">Carla Fernandes</span>
+                </a>
+                <a href="/pacientes" class="sidebar-menu-item mt-2 text-blue-500 hover:text-blue-400">
+                    <span class="text">Ver todos</span>
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Theme Toggle Button -->
     <div class="fixed top-4 right-4 z-20">
         <button id="theme-toggle-btn" class="p-2 rounded-full bg-gray-800 text-gray-200 transition-colors hover:bg-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
@@ -164,13 +333,10 @@
         </button>
     </div>
 
-    <!-- Main application container -->
     <div id="app-container">
-        <!-- Initial Layout: Centered on the screen -->
         <div id="initial-layout" class="initial-layout">
             <h1 class="text-4xl font-bold mb-2">Especialista em DSM-5</h1>
             <p class="text-gray-400 max-w-lg mx-auto mb-8">Resultados fundamentados exclusivamente nos critérios do DSM-5. Powered by Google. Designed by Cadu Bandeira.</p>
-            <!-- Search component for the initial layout -->
             <div id="initial-search" class="search-container initial-search-container">
                 <div class="relative w-full">
                     <input id="search-input-initial" type="text" placeholder="Ex: Sintomas de um ataque de pânico" class="w-full py-3 px-5 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-lg" style="background-color: var(--bg-input); color: var(--text-body); border-color: var(--text-card-secondary);">
@@ -184,19 +350,15 @@
             </div>
         </div>
 
-        <!-- On-Search Layout: hidden by default -->
         <div id="on-search-layout" class="layout-container hidden">
             <div class="w-full text-center mb-8">
                 <h1 class="text-4xl font-bold mb-2">Especialista em DSM-5</h1>
                 <p class="text-gray-400 max-w-lg mx-auto">Resultados fundamentados exclusivamente nos critérios do DSM-5. Powered by Google. Designed by Cadu Bandeira.</p>
             </div>
-            <!-- Results and reasoning display area -->
             <div id="results-container" class="results-container-scrollable w-full space-y-8 mb-8 px-4 md:px-0" style="padding-left: 0.5rem; padding-right: 0.5rem;">
-                <!-- Content will be injected here by JavaScript -->
-            </div>
+                </div>
         </div>
         
-        <!-- Search input and button - fixed at bottom for on-search state -->
         <div id="on-search-fixed-search" class="search-container on-search-fixed-bottom hidden">
             <div class="relative w-full md:w-3/4 lg:w-2/3">
                 <input id="search-input-fixed" type="text" placeholder="Ex: Sintomas de um ataque de pânico" class="w-full py-3 px-5 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-lg" style="background-color: var(--bg-input); color: var(--text-body); border-color: var(--text-card-secondary);">
@@ -228,6 +390,9 @@
 
         const resultsContainer = document.getElementById('results-container');
         const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        
+        const sidebar = document.getElementById('sidebar');
+        const burgerMenuBtn = document.getElementById('burger-menu-btn');
         
         // **SUBSTITUA 'SUA_CHAVE_DA_API_AQUI' PELA SUA CHAVE REAL**
         const apiKey = 'AIzaSyAm8MjmrK9_1JaKG9o9jiC_xAPk-_zOgis';
@@ -274,6 +439,11 @@
             const currentTheme = document.body.classList.contains('light') ? 'dark' : 'light';
             localStorage.setItem('theme', currentTheme);
             applyTheme(currentTheme);
+        });
+
+        // Toggle sidebar on burger menu click
+        burgerMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-expanded');
         });
 
         // Create a message box for errors or status updates
@@ -434,7 +604,6 @@ Formate sua resposta como um objeto JSON com duas chaves: "diagnosis" e "reasoni
                 initialSearchInput.disabled = false;
                 onSearchButton.disabled = false;
                 onSearchInput.disabled = false;
-                // onSearchInput.value = ''; // Don't clear the input to allow quick follow-up searches
             }
         }
         
