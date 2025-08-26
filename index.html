@@ -373,255 +373,209 @@
     </div>
 
     <script>
-        // Global variables for Firebase and other app data
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : '';
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    // Global variables for Firebase and other app data
+    const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : '';
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
-        // Get HTML elements
-        const initialLayout = document.getElementById('initial-layout');
-        const initialSearchInput = document.getElementById('search-input-initial');
-        const initialSearchButton = document.getElementById('search-button-initial');
+    // Get HTML elements
+    const initialLayout = document.getElementById('initial-layout');
+    const initialSearchInput = document.getElementById('search-input-initial');
+    const initialSearchButton = document.getElementById('search-button-initial');
 
-        const onSearchLayout = document.getElementById('on-search-layout');
-        const onSearchFixedSearch = document.getElementById('on-search-fixed-search');
-        const onSearchInput = document.getElementById('search-input-fixed');
-        const onSearchButton = document.getElementById('search-button-fixed');
+    const onSearchLayout = document.getElementById('on-search-layout');
+    const onSearchFixedSearch = document.getElementById('on-search-fixed-search');
+    const onSearchInput = document.getElementById('search-input-fixed');
+    const onSearchButton = document.getElementById('search-button-fixed');
 
-        const resultsContainer = document.getElementById('results-container');
-        const themeToggleBtn = document.getElementById('theme-toggle-btn');
-        
-        const sidebar = document.getElementById('sidebar');
-        const burgerMenuBtn = document.getElementById('burger-menu-btn');
-        
-        // **SUBSTITUA 'SUA_CHAVE_DA_API_AQUI' PELA SUA CHAVE REAL**
-        const apiKey = 'AIzaSyAm8MjmrK9_1JaKG9o9jiC_xAPk-_zOgis';
-        
-        // API constants
-        const MODEL_NAME = 'gemini-2.5-flash-preview-05-20';
-        const BASE_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=`;
+    const resultsContainer = document.getElementById('results-container');
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    
+    const sidebar = document.getElementById('sidebar');
+    const burgerMenuBtn = document.getElementById('burger-menu-btn');
+    
+    // **YOUR NEW FIREBASE FUNCTION URL**
+    const FUNCTION_URL = 'https://us-central1-dsmconsulta.cloudfunctions.net/dsmQuery';
 
-        // Theme Toggle Logic
-        function applyTheme(theme) {
-            if (theme === 'light') {
-                document.body.classList.add('light');
-                themeToggleBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                `;
-            } else {
-                document.body.classList.remove('light');
-                themeToggleBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                `;
-            }
-        }
-
-        // Check for saved theme preference on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            applyTheme(savedTheme);
-        });
-
-        // Toggle theme on button click
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.body.classList.contains('light') ? 'dark' : 'light';
-            localStorage.setItem('theme', currentTheme);
-            applyTheme(currentTheme);
-        });
-
-        // Toggle sidebar on burger menu click
-        burgerMenuBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('sidebar-expanded');
-        });
-
-        // Create a message box for errors or status updates
-        function showMessage(message) {
-            const messageBox = document.createElement('div');
-            messageBox.className = 'message-box';
-            messageBox.textContent = message;
-            resultsContainer.appendChild(messageBox);
-            setTimeout(() => {
-                resultsContainer.removeChild(messageBox);
-            }, 5000);
-        }
-
-        // Create a new response card
-        function createResponseCard(query, diagnosis, reasoning) {
-            const card = document.createElement('div');
-            card.className = 'p-6 rounded-xl shadow-xl transition-all duration-300';
-            card.style.backgroundColor = 'var(--bg-card)';
-            card.style.color = 'var(--text-card)';
-            card.innerHTML = `
-                <div class="mb-4">
-                    <h3 class="text-lg font-semibold dark-mode-blue light:light-mode-blue">Sua Pergunta:</h3>
-                    <p class="mt-1" style="color: var(--text-card-secondary);">${query}</p>
-                </div>
-                <div class="mb-4">
-                    <h3 class="text-lg font-semibold dark-mode-blue light:light-mode-blue">Diagnóstico:</h3>
-                    <p class="mt-1">${diagnosis}</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold dark-mode-blue light:light-mode-blue">Raciocínio:</h3>
-                    <div class="mt-1">
-                        <p class="whitespace-pre-wrap">${reasoning}</p>
-                    </div>
-                </div>
+    // Theme Toggle Logic
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.body.classList.add('light');
+            themeToggleBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
             `;
-            resultsContainer.appendChild(card);
-            resultsContainer.scrollTop = resultsContainer.scrollHeight;
-        }
-        
-        // Show a loading spinner
-        function showLoading() {
-            resultsContainer.innerHTML = `
-                <div id="loading" class="flex justify-center items-center py-10">
-                    <div class="loading-spinner"></div>
-                </div>
+        } else {
+            document.body.classList.remove('light');
+            themeToggleBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
             `;
         }
+    }
 
-        // Hide the loading spinner
-        function hideLoading() {
-            const loadingSpinner = document.getElementById('loading');
-            if (loadingSpinner) {
-                loadingSpinner.remove();
-            }
+    // Check for saved theme preference on load
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        applyTheme(savedTheme);
+    });
+
+    // Toggle theme on button click
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.body.classList.contains('light') ? 'dark' : 'light';
+        localStorage.setItem('theme', currentTheme);
+        applyTheme(currentTheme);
+    });
+
+    // Toggle sidebar on burger menu click
+    burgerMenuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('sidebar-expanded');
+    });
+
+    // Create a message box for errors or status updates
+    function showMessage(message) {
+        const messageBox = document.createElement('div');
+        messageBox.className = 'message-box';
+        messageBox.textContent = message;
+        resultsContainer.appendChild(messageBox);
+        setTimeout(() => {
+            resultsContainer.removeChild(messageBox);
+        }, 5000);
+    }
+
+    // Create a new response card
+    function createResponseCard(query, diagnosis, reasoning) {
+        const card = document.createElement('div');
+        card.className = 'p-6 rounded-xl shadow-xl transition-all duration-300';
+        card.style.backgroundColor = 'var(--bg-card)';
+        card.style.color = 'var(--text-card)';
+        card.innerHTML = `
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold dark-mode-blue light:light-mode-blue">Sua Pergunta:</h3>
+                <p class="mt-1" style="color: var(--text-card-secondary);">${query}</p>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold dark-mode-blue light:light-mode-blue">Diagnóstico:</h3>
+                <p class="mt-1">${diagnosis}</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold dark-mode-blue light:light-mode-blue">Raciocínio:</h3>
+                <div class="mt-1">
+                    <p class="whitespace-pre-wrap">${reasoning}</p>
+                </div>
+            </div>
+        `;
+        resultsContainer.appendChild(card);
+        resultsContainer.scrollTop = resultsContainer.scrollHeight;
+    }
+    
+    // Show a loading spinner
+    function showLoading() {
+        resultsContainer.innerHTML = `
+            <div id="loading" class="flex justify-center items-center py-10">
+                <div class="loading-spinner"></div>
+            </div>
+        `;
+    }
+
+    // Hide the loading spinner
+    function hideLoading() {
+        const loadingSpinner = document.getElementById('loading');
+        if (loadingSpinner) {
+            loadingSpinner.remove();
         }
+    }
+    
+    // Main search function
+    async function performSearch(query) {
+        if (!query) {
+            showMessage("Por favor, digite uma pergunta.");
+            return;
+        }
+
+        // Transition from initial layout to on-search layout
+        initialLayout.classList.add('hidden');
+        onSearchLayout.classList.remove('hidden');
+        onSearchFixedSearch.classList.remove('hidden');
+        resultsContainer.innerHTML = ''; // Clear previous results
         
-        // Exponential backoff for API calls
-        async function fetchWithBackoff(url, options, retries = 5, delay = 1000) {
-            try {
-                const response = await fetch(url, options);
-                if (response.status === 429) { // Too Many Requests
-                    if (retries > 0) {
-                        await new Promise(res => setTimeout(res, delay));
-                        return fetchWithBackoff(url, options, retries - 1, delay * 2);
-                    }
-                }
-                return response;
-            } catch (error) {
-                if (retries > 0) {
-                    await new Promise(res => setTimeout(res, delay));
-                    return fetchWithBackoff(url, options, retries - 1, delay * 2);
-                }
-                throw error;
-            }
-        }
+        showLoading();
+        initialSearchButton.disabled = true;
+        initialSearchInput.disabled = true;
+        onSearchButton.disabled = true;
+        onSearchInput.disabled = true;
 
-        // Main search function
-        async function performSearch(query) {
-            if (!apiKey || apiKey === 'SUA_CHAVE_DA_API_AQUI') {
-                showMessage("Por favor, insira sua chave da API no código.");
-                return;
+        try {
+            // Updated fetch call to use your Firebase Function
+            const response = await fetch(FUNCTION_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: query })
+            });
+
+            // Handle HTTP errors
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('API Error:', errorData);
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            if (!query) {
-                showMessage("Por favor, digite uma pergunta.");
-                return;
-            }
-
-            // Transition from initial layout to on-search layout
-            initialLayout.classList.add('hidden');
-            onSearchLayout.classList.remove('hidden');
-            onSearchFixedSearch.classList.remove('hidden');
-            resultsContainer.innerHTML = ''; // Clear previous results
+            const result = await response.json();
             
-            showLoading();
-            initialSearchButton.disabled = true;
-            initialSearchInput.disabled = true;
-            onSearchButton.disabled = true;
-            onSearchInput.disabled = true;
-
-            const chatHistory = [{
-                role: "user",
-                parts: [{
-                    text: `Como um especialista em DSM-5, forneça um diagnóstico e raciocínio para a seguinte pergunta. A resposta deve ser baseada *apenas* no DSM-5. Se você não puder fornecer um diagnóstico, declare isso claramente e forneça o raciocínio.
-
-Pergunta: ${query}
-
-Formate sua resposta como um objeto JSON com duas chaves: "diagnosis" e "reasoning". O raciocínio deve ser detalhado e citar os critérios relevantes do DSM-5.`
-                }]
-            }];
-
-            const payload = {
-                contents: chatHistory,
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                        type: "OBJECT",
-                        properties: {
-                            "diagnosis": { "type": "STRING" },
-                            "reasoning": { "type": "STRING" }
-                        },
-                        "propertyOrdering": ["diagnosis", "reasoning"]
-                    }
-                }
-            };
-            
-            const urlWithKey = `${BASE_API_URL}${apiKey}`;
-
-            try {
-                const response = await fetchWithBackoff(urlWithKey, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
+            if (result && result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
                 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
+                // Parse the JSON string from the AI's response
+                const jsonText = result.candidates[0].content.parts[0].text;
+                const parsedData = JSON.parse(jsonText);
+                
+                createResponseCard(query, parsedData.diagnosis, parsedData.reasoning);
 
-                    const jsonText = result.candidates[0].content.parts[0].text;
-                    const parsedData = JSON.parse(jsonText);
-                    
-                    createResponseCard(query, parsedData.diagnosis, parsedData.reasoning);
-
-                } else {
-                    showMessage("Não foi possível obter uma resposta válida. Por favor, tente novamente.");
-                    console.error("Unexpected API response structure:", result);
-                }
-
-            } catch (error) {
-                showMessage("Ocorreu um erro. Por favor, tente novamente.");
-                console.error("Fetch error:", error);
-            } finally {
-                hideLoading();
-                initialSearchButton.disabled = false;
-                initialSearchInput.disabled = false;
-                onSearchButton.disabled = false;
-                onSearchInput.disabled = false;
+            } else {
+                showMessage("Não foi possível obter uma resposta válida. Por favor, tente novamente.");
+                console.error("Unexpected API response structure:", result);
             }
+
+        } catch (error) {
+            showMessage("Ocorreu um erro. Por favor, tente novamente.");
+            console.error("Fetch error:", error);
+        } finally {
+            hideLoading();
+            initialSearchButton.disabled = false;
+            initialSearchInput.disabled = false;
+            onSearchButton.disabled = false;
+            onSearchInput.disabled = false;
         }
-        
-        // Event listeners for both search components
-        initialSearchButton.addEventListener('click', () => performSearch(initialSearchInput.value.trim()));
-        initialSearchInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                performSearch(initialSearchInput.value.trim());
-            }
-        });
+    }
+    
+    // Event listeners for both search components
+    initialSearchButton.addEventListener('click', () => performSearch(initialSearchInput.value.trim()));
+    initialSearchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            performSearch(initialSearchInput.value.trim());
+        }
+    });
 
-        onSearchButton.addEventListener('click', () => performSearch(onSearchInput.value.trim()));
-        onSearchInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                performSearch(onSearchInput.value.trim());
-            }
-        });
-    </script>
+    onSearchButton.addEventListener('click', () => performSearch(onSearchInput.value.trim()));
+    onSearchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            performSearch(onSearchInput.value.trim());
+        }
+    });
+</script>
 
 </body>
 </html>
