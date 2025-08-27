@@ -22,7 +22,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 exports.dsmQuery = onRequest(
   {
     region: 'us-central1',
-    secrets: [GEMINI_API_KEY]
+    secrets: ['GEMINI_API_KEY']
   },
   app
 );
