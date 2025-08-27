@@ -1,12 +1,8 @@
 const { onRequest } = require('firebase-functions/v2/https');
 const { setGlobalOptions } = require('firebase-functions/v2');
-const { defineString } = require('firebase-functions/params');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const cors = require('cors')({ origin: true });
 const express = require('express');
-
-// Define your API key as a secure parameter.
-const GEMINI_API_KEY = defineString('GEMINI_API_KEY');
 
 // Set a global option to limit concurrent instances
 setGlobalOptions({ maxInstances: 10 });
@@ -16,7 +12,15 @@ const app = express();
 app.use(express.json());
 app.use(cors);
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY.value());
+// The API key is now read directly from the environment variables,
+// which is populated by the `secrets` configuration below.
+let genAI;
+try {
+    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+} catch (e) {
+    console.error("Failed to initialize GoogleGenerativeAI:", e);
+    // You might want to handle this more gracefully in a real app
+}
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 exports.dsmQuery = onRequest(
