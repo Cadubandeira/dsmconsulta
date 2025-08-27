@@ -21,7 +21,7 @@ try {
     console.error("Failed to initialize GoogleGenerativeAI:", e);
     // You might want to handle this more gracefully in a real app
 }
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
 exports.dsmQuery = onRequest(
   {
@@ -51,11 +51,15 @@ app.post('/', async (req, res) => {
     const response = await result.response;
     const text = response.text();
 
-    const jsonResponse = JSON.parse(text);
+    // Remove markdown formatting before parsing
+    const cleanedText = text.replace(/```json\n|```/g, '').trim();
+
+    // Now parse the cleaned JSON string
+    const jsonResponse = JSON.parse(cleanedText);
 
     return res.status(200).json(jsonResponse);
-  } catch (error) {
+} catch (error) {
     console.error("API call failed: ", error);
     return res.status(500).json({ error: "API call failed", details: error.message });
-  }
+}
 });

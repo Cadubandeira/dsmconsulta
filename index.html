@@ -516,49 +516,44 @@
         onSearchInput.disabled = true;
 
         try {
-            // Updated fetch call to use your Firebase Function
-            const response = await fetch(FUNCTION_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ query: query })
-            });
+        const response = await fetch(FUNCTION_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: query })
+        });
 
-            // Handle HTTP errors
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('API Error:', errorData);
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            
-            if (result && result.candidates && result.candidates.length > 0 &&
-                result.candidates[0].content && result.candidates[0].content.parts &&
-                result.candidates[0].content.parts.length > 0) {
-                
-                // Parse the JSON string from the AI's response
-                const jsonText = result.candidates[0].content.parts[0].text;
-                const parsedData = JSON.parse(jsonText);
-                
-                createResponseCard(query, parsedData.diagnosis, parsedData.reasoning);
-
-            } else {
-                showMessage("Não foi possível obter uma resposta válida. Por favor, tente novamente.");
-                console.error("Unexpected API response structure:", result);
-            }
-
-        } catch (error) {
-            showMessage("Ocorreu um erro. Por favor, tente novamente.");
-            console.error("Fetch error:", error);
-        } finally {
-            hideLoading();
-            initialSearchButton.disabled = false;
-            initialSearchInput.disabled = false;
-            onSearchButton.disabled = false;
-            onSearchInput.disabled = false;
+        // Handle HTTP errors
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('API Error:', errorData);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const result = await response.json();
+        
+        // **NOVA LÓGICA DE TRATAMENTO DE RESPOSTA**
+        // Agora, o código verifica se o objeto 'result' tem as chaves 'diagnosis' e 'reasoning'
+        if (result && result.diagnosis && result.reasoning) {
+            
+            createResponseCard(query, result.diagnosis, result.reasoning);
+
+        } else {
+            showMessage("Não foi possível obter uma resposta válida. Por favor, tente novamente.");
+            console.error("Unexpected API response structure:", result);
+        }
+
+    } catch (error) {
+        showMessage("Ocorreu um erro. Por favor, tente novamente.");
+        console.error("Fetch error:", error);
+    } finally {
+        hideLoading();
+        initialSearchButton.disabled = false;
+        initialSearchInput.disabled = false;
+        onSearchButton.disabled = false;
+        onSearchInput.disabled = false;
+    }
     }
     
     // Event listeners for both search components
