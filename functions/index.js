@@ -15,12 +15,20 @@ app.use(cors);
 // The API key is now read directly from the environment variables,
 // which is populated by the `secrets` configuration below.
 let genAI;
-try {
-    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+try {{
+    // 1. Garante que a chave existe antes de tentar inicializar
+    if (!process.env.GEMINI_API_KEY) {
+        throw new Error("GEMINI_API_KEY is not set.");
+    }
+    
+    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
 } catch (e) {
-    console.error("Failed to initialize GoogleGenerativeAI:", e);
-    // You might want to handle this more gracefully in a real app
+    console.error("⚠️ ERRO CRÍTICO: Falha na inicialização do GoogleGenerativeAI ou falta da chave:", e.message);
+    // Deixe 'model' como 'undefined' e lide com isso dentro da rota POST.
 }
+
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 exports.dsmQuery = onRequest(
@@ -32,11 +40,12 @@ exports.dsmQuery = onRequest(
 );
 
 app.post('/', async (req, res) => {
-  if (!req.body || !req.body.query) {
-    return res.status(400).send({
-      error: 'Bad Request: A POST request with a "query" field is required.'
+if (!model) {
+    return res.status(503).json({ 
+        error: 'Service Unavailable: AI model failed to initialize.',
+        details: 'API Key may be missing or failed to load from secret.'
     });
-  }
+}
 
   const userQuery = req.body.query;
 
