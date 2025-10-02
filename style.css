@@ -1,0 +1,237 @@
+:root {
+    --bg-body: #1a1a1a;
+    --text-body: #e0e0e0;
+    --bg-card: #2d2d2d;
+    --text-card: #e0e0e0;
+    --text-card-secondary: #b0b0b0;
+    --bg-input: #1f2937;
+    --bg-search-container: #1a1a1a;
+    --bg-sidebar: #1e1e1e;
+    --text-sidebar: #e0e0e0;
+    --bg-sidebar-hover: #2d2d2d;
+}
+
+body.light {
+    --bg-body: #f3f4f6;
+    --text-body: #1a1a1a;
+    --bg-card: #e5e7eb;
+    --text-card: #1a1a1a;
+    --text-card-secondary: #374151;
+    --bg-input: #ffffff;
+    --bg-search-container: #f3f4f6;
+    --bg-sidebar: #ffffff;
+    --text-sidebar: #1a1a1a;
+    --bg-sidebar-hover: #e5e7eb;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.layout-container {
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+}
+
+.initial-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    text-align: center;
+    margin-left: 80px;
+}
+
+.search-results-layout {
+    padding-top: 2rem;
+    padding-bottom: 8rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 80px;
+}
+
+.search-container {
+    padding: 1rem;
+    z-index: 10;
+}
+
+.initial-search-container {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+.on-search-fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-search-container);
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .on-search-fixed-bottom {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        max-width: 100%;
+    }
+}
+
+.message-box {
+    background-color: #3b82f6;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.light .message-box {
+    background-color: #d1e7ff;
+    color: #1f2937;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    animation: rotate 1s linear infinite;
+}
+
+.light .loading-spinner {
+    border-color: rgba(0, 0, 0, 0.1);
+    border-top-color: #3b82f6;
+}
+
+.dark-mode-blue {
+    color: #3b82f6;
+}
+
+.light-mode-blue {
+    color: #1e40af;
+}
+
+.results-container-scrollable {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 1rem;
+    padding-bottom: 0.1rem;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 70px;
+    background-color: var(--bg-sidebar);
+    color: var(--text-sidebar);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    overflow-x: hidden;
+    z-index: 20;
+}
+
+.sidebar:hover, .sidebar-expanded {
+    width: 280px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar-header .logo {
+    display: none;
+    flex-shrink: 0;
+}
+
+.sidebar:hover .logo, .sidebar-expanded .logo {
+    display: block;
+}
+
+.sidebar-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.sidebar-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.sidebar-menu-item:hover {
+    background-color: var(--bg-sidebar-hover);
+}
+
+.sidebar-menu-item .icon {
+    flex-shrink: 0;
+}
+
+.sidebar-menu-item .text {
+    margin-left: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar:hover .text, .sidebar-expanded .text {
+    opacity: 1;
+}
+
+.patient-section {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    margin-top: 1rem;
+}
+
+.patient-section h4 {
+    font-weight: 600;
+    padding-left: 1rem;
+    color: var(--text-card-secondary);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar:hover .patient-section h4, .sidebar-expanded .patient-section h4 {
+    opacity: 1;
+}
