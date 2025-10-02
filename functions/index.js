@@ -21,7 +21,7 @@ try {
     console.error("Failed to initialize GoogleGenerativeAI:", e);
     // You might want to handle this more gracefully in a real app
 }
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 exports.dsmQuery = onRequest(
   {
