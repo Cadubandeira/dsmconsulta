@@ -31,6 +31,17 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.custom-textarea {
+  min-height: 48px;
+  max-height: 365px;
+  height: 48px;
+  background-color: var(--bg-input);
+  color: var(--text-body);
+  border-color: var(--text-card-secondary);
+  overflow-y: auto;
+}
+
+
 .layout-container {
     max-width: 800px;
     margin: 0 auto;
