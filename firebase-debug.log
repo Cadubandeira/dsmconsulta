@@ -1,0 +1,656 @@
+[debug] [2025-10-03T13:35:03.744Z] ----------------------------------------------------------------------
+[debug] [2025-10-03T13:35:03.749Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2025-10-03T13:35:03.749Z] CLI Version:   14.14.0
+[debug] [2025-10-03T13:35:03.749Z] Platform:      win32
+[debug] [2025-10-03T13:35:03.750Z] Node Version:  v22.13.1
+[debug] [2025-10-03T13:35:03.750Z] Time:          Fri Oct 03 2025 10:35:03 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-10-03T13:35:03.750Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-03T13:35:04.166Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-03T13:35:04.167Z] > authorizing via signed-in user (carlosbandeiraufpr@gmail.com)
+[debug] [2025-10-03T13:35:04.168Z] [iam] checking project dsmconsulta for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-10-03T13:35:04.171Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:04.171Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:04.173Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions [none]
+[debug] [2025-10-03T13:35:04.174Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions x-goog-quota-user=projects/dsmconsulta
+[debug] [2025-10-03T13:35:04.174Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-10-03T13:35:05.467Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions 200
+[debug] [2025-10-03T13:35:05.468Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-10-03T13:35:05.470Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:05.471Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:05.471Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-10-03T13:35:05.472Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-10-03T13:35:05.957Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-10-03T13:35:05.958Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'dsmconsulta'...
+[info] 
+[info] i  deploying functions 
+[info] +  functions: Finished running predeploy script. 
+[debug] [2025-10-03T13:35:05.971Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:05.971Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:05.971Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta [none]
+[debug] [2025-10-03T13:35:06.238Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta 200
+[debug] [2025-10-03T13:35:06.238Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta {"projectNumber":"786856571541","projectId":"dsmconsulta","lifecycleState":"ACTIVE","name":"dsmconsulta","labels":{"firebase":"enabled","firebase-core":"disabled","generative-language":"enabled"},"createTime":"2025-08-25T21:13:09.215874Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-10-03T13:35:06.246Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:06.246Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:06.247Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/dsmconsulta/adminSdkConfig [none]
+[debug] [2025-10-03T13:35:06.733Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/dsmconsulta/adminSdkConfig 200
+[debug] [2025-10-03T13:35:06.733Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/dsmconsulta/adminSdkConfig {"projectId":"dsmconsulta","storageBucket":"dsmconsulta.firebasestorage.app"}
+[debug] [2025-10-03T13:35:06.734Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:06.734Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:06.735Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs [none]
+[debug] [2025-10-03T13:35:07.490Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs 200
+[debug] [2025-10-03T13:35:07.490Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs {"configs":[{"name":"projects/dsmconsulta/configs/dsm"},{"name":"projects/dsmconsulta/configs/gemini"}]}
+[debug] [2025-10-03T13:35:07.491Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.491Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.491Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.491Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.492Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables [none]
+[debug] [2025-10-03T13:35:07.493Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables [none]
+[debug] [2025-10-03T13:35:07.857Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables 200
+[debug] [2025-10-03T13:35:07.857Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables {"variables":[{"name":"projects/dsmconsulta/configs/dsm/variables/key","updateTime":"2025-08-26T15:49:00.702499114Z"}]}
+[debug] [2025-10-03T13:35:07.858Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.859Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.859Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables/key [none]
+[debug] [2025-10-03T13:35:07.884Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables 200
+[debug] [2025-10-03T13:35:07.885Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables {"variables":[{"name":"projects/dsmconsulta/configs/gemini/variables/key","updateTime":"2025-08-27T21:19:34.060983251Z"}]}
+[debug] [2025-10-03T13:35:07.885Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.886Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:07.886Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables/key [none]
+[debug] [2025-10-03T13:35:08.297Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables/key 200
+[debug] [2025-10-03T13:35:08.297Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables/key {"name":"projects/dsmconsulta/configs/gemini/variables/key","updateTime":"2025-08-27T21:19:34.060983251Z","text":"AIzaSyD9Yhafm9YQkU6VPeuB7WzzNiMLN1ctEQY"}
+[debug] [2025-10-03T13:35:08.300Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables/key 200
+[debug] [2025-10-03T13:35:08.301Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables/key {"name":"projects/dsmconsulta/configs/dsm/variables/key","updateTime":"2025-08-26T15:49:00.702499114Z","text":"AIzaSyCeG4c7zncO9hf06HnbBsdDfJI_KLr8TB8"}
+[debug] [2025-10-03T13:35:08.308Z] Validating nodejs source
+[debug] [2025-10-03T13:35:13.964Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-10-03T13:35:13.965Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-10-03T13:35:13.974Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-10-03T13:35:14.009Z] Found firebase-functions binary at 'D:\GitHub Projetos\dsmconsulta\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8301
+
+[debug] [2025-10-03T13:35:17.115Z] Got response from /__/functions.yaml {"endpoints":{"dsmQuery":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"secretEnvironmentVariables":[{"key":"GEMINI_API_KEY"}],"labels":{},"httpsTrigger":{},"entryPoint":"dsmQuery"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-10-03T13:35:21.279Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-03T13:35:21.280Z] > authorizing via signed-in user (carlosbandeiraufpr@gmail.com)
+[debug] [2025-10-03T13:35:21.280Z] [iam] checking project dsmconsulta for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-10-03T13:35:21.281Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:21.281Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:21.282Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions [none]
+[debug] [2025-10-03T13:35:21.282Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions x-goog-quota-user=projects/dsmconsulta
+[debug] [2025-10-03T13:35:21.282Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-10-03T13:35:22.224Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions 200
+[debug] [2025-10-03T13:35:22.225Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-10-03T13:35:22.225Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:22.226Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:22.226Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/dsmconsulta/instances pageSize=100&pageToken=
+[debug] [2025-10-03T13:35:23.505Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/dsmconsulta/instances 200
+[debug] [2025-10-03T13:35:23.506Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/dsmconsulta/instances {}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged D:\GitHub Projetos\dsmconsulta\functions (76.1 KB) for uploading 
+[debug] [2025-10-03T13:35:23.624Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:23.624Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:23.625Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/dsmconsulta/locations/-/functions [none]
+[debug] [2025-10-03T13:35:24.910Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/dsmconsulta/locations/-/functions 200
+[debug] [2025-10-03T13:35:24.910Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/dsmconsulta/locations/-/functions {}
+[debug] [2025-10-03T13:35:24.911Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:24.911Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:24.912Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-10-03T13:35:26.133Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/-/functions 200
+[debug] [2025-10-03T13:35:26.134Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/-/functions {}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2025-10-03T13:35:26.149Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:26.150Z] Checked if tokens are valid: true, expires at: 1759501560493
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2025-10-03T13:35:26.151Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:26.152Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:26.152Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-10-03T13:35:26.153Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity x-goog-quota-user=projects/786856571541
+[debug] [2025-10-03T13:35:26.153Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity {}
+[debug] [2025-10-03T13:35:26.160Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-10-03T13:35:26.161Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity x-goog-quota-user=projects/786856571541
+[debug] [2025-10-03T13:35:26.161Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity {}
+[debug] [2025-10-03T13:35:27.632Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2025-10-03T13:35:27.633Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-786856571541@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"116560666352400882006"}}
+[debug] [2025-10-03T13:35:27.675Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2025-10-03T13:35:27.675Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-786856571541@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"109486349710682832997"}}
+[info] i  functions: ensuring required API secretmanager.googleapis.com is enabled... 
+[debug] [2025-10-03T13:35:27.683Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:27.684Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:27.684Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY/versions/latest [none]
+[debug] [2025-10-03T13:35:28.725Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY/versions/latest 200
+[debug] [2025-10-03T13:35:28.725Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY/versions/latest {"name":"projects/786856571541/secrets/GEMINI_API_KEY/versions/4","createTime":"2025-08-27T23:24:27.721564Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"163d611707035c\""}
+[debug] [2025-10-03T13:35:28.727Z] Resolved secret version of GEMINI_API_KEY to 4.
+[debug] [2025-10-03T13:35:28.730Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:28.731Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:28.731Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta [none]
+[debug] [2025-10-03T13:35:29.093Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta 200
+[debug] [2025-10-03T13:35:29.093Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta {"projectNumber":"786856571541","projectId":"dsmconsulta","lifecycleState":"ACTIVE","name":"dsmconsulta","labels":{"firebase":"enabled","firebase-core":"disabled","generative-language":"enabled"},"createTime":"2025-08-25T21:13:09.215874Z"}
+[debug] [2025-10-03T13:35:29.096Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:29.096Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:29.096Z] >>> [apiv2][query] GET https://compute.googleapis.com/compute/v1/projects/786856571541 [none]
+[debug] [2025-10-03T13:35:30.136Z] <<< [apiv2][status] GET https://compute.googleapis.com/compute/v1/projects/786856571541 403
+[debug] [2025-10-03T13:35:30.137Z] <<< [apiv2][body] GET https://compute.googleapis.com/compute/v1/projects/786856571541 {"error":{"code":403,"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541","service":"compute.googleapis.com","consumer":"projects/786856571541","serviceTitle":"Compute Engine API","containerInfo":"786856571541"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541"}]}]}}
+[debug] [2025-10-03T13:35:30.138Z] unable to look up default compute service account. Falling back to 786856571541-compute@developer.gserviceaccount.com. Error: {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":403,"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541","service":"compute.googleapis.com","consumer":"projects/786856571541","serviceTitle":"Compute Engine API","containerInfo":"786856571541"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541"}]}]}},"response":{"statusCode":403}},"exit":1,"message":"Request to https://compute.googleapis.com/compute/v1/projects/786856571541 had HTTP Error: 403, Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":403}
+[info] i  functions: ensuring 786856571541-compute@developer.gserviceaccount.com access to secret GEMINI_API_KEY. 
+[debug] [2025-10-03T13:35:30.141Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:30.141Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:30.142Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY:getIamPolicy [none]
+[debug] [2025-10-03T13:35:30.694Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY:getIamPolicy 200
+[debug] [2025-10-03T13:35:30.695Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY:getIamPolicy {"version":1,"etag":"BwY9X+JOn8U=","bindings":[{"role":"roles/secretmanager.secretAccessor","members":["serviceAccount:786856571541-compute@developer.gserviceaccount.com"]}]}
+[info] +  secretmanager: Granted roles/secretmanager.secretAccessor on projects/dsmconsulta/secrets/GEMINI_API_KEY to 786856571541-compute@developer.gserviceaccount.com 
+[info] +  functions: ensured 786856571541-compute@developer.gserviceaccount.com access to GEMINI_API_KEY. 
+[debug] [2025-10-03T13:35:30.703Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:30.703Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:30.703Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/dsmconsulta/billingInfo [none]
+[debug] [2025-10-03T13:35:32.256Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/dsmconsulta/billingInfo 200
+[debug] [2025-10-03T13:35:32.257Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/dsmconsulta/billingInfo {"name":"projects/dsmconsulta/billingInfo","projectId":"dsmconsulta","billingAccountName":"billingAccounts/01B9C5-278D78-3DC3D2","billingEnabled":true}
+[debug] [2025-10-03T13:35:32.260Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2025-10-03T13:35:32.261Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:32.261Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:32.262Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions [none]
+[debug] [2025-10-03T13:35:32.262Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions x-goog-quota-user=projects/dsmconsulta
+[debug] [2025-10-03T13:35:32.262Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2025-10-03T13:35:32.510Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions 200
+[debug] [2025-10-03T13:35:32.510Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2025-10-03T13:35:32.511Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2025-10-03T13:35:32.513Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:32.513Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:32.514Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2025-10-03T13:35:33.773Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2025-10-03T13:35:33.773Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/a4c150d3-d1a4-454e-85c9-fc7ae4511d31.zip?GoogleAccessId=service-786856571541@gcf-admin-robot.iam.gserviceaccount.com&Expires=1759500331&Signature=fCaQxD9JcHkjZDZstEoWuVFcHTFnEdDfrK1d%2BhFA1UHCwIwO843r8ipm1H0YDwXNTO4X1gSKrOAUHYM%2FDSROEaLHO45jyA5h4ycHaj1ZG2WwuN%2FBg8iR5mK7px3oBgaD41ONfau2e0prvMmPkID6RRLU0VneIUKcKPuxyZEfa8nckvhyeemTdnMSWiiTS2g%2BjsAjcawJuL561MIcI%2FRIi5%2FDSJkux%2Fi6MX2x0uW5J1SN0LM7wGtCmzomSPscL15hVbM1dwKffe5Abduhr6Mt4qkmzaYwkN%2FzW5Llea0P%2BSaM9BlmdWfcLYo5DehdBGWXQwApsG%2FBoofwBa9LN%2FVRoA%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com","object":"a4c150d3-d1a4-454e-85c9-fc7ae4511d31.zip"}}
+[debug] [2025-10-03T13:35:33.775Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/a4c150d3-d1a4-454e-85c9-fc7ae4511d31.zip GoogleAccessId=service-786856571541%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1759500331&Signature=fCaQxD9JcHkjZDZstEoWuVFcHTFnEdDfrK1d%2BhFA1UHCwIwO843r8ipm1H0YDwXNTO4X1gSKrOAUHYM%2FDSROEaLHO45jyA5h4ycHaj1ZG2WwuN%2FBg8iR5mK7px3oBgaD41ONfau2e0prvMmPkID6RRLU0VneIUKcKPuxyZEfa8nckvhyeemTdnMSWiiTS2g%2BjsAjcawJuL561MIcI%2FRIi5%2FDSJkux%2Fi6MX2x0uW5J1SN0LM7wGtCmzomSPscL15hVbM1dwKffe5Abduhr6Mt4qkmzaYwkN%2FzW5Llea0P%2BSaM9BlmdWfcLYo5DehdBGWXQwApsG%2FBoofwBa9LN%2FVRoA%3D%3D
+[debug] [2025-10-03T13:35:33.776Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/a4c150d3-d1a4-454e-85c9-fc7ae4511d31.zip [stream]
+[debug] [2025-10-03T13:35:34.526Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/a4c150d3-d1a4-454e-85c9-fc7ae4511d31.zip 200
+[debug] [2025-10-03T13:35:34.526Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/a4c150d3-d1a4-454e-85c9-fc7ae4511d31.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 22 (2nd Gen) function dsmQuery(us-central1)... 
+[debug] [2025-10-03T13:35:34.545Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:34.546Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:34.546Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions functionId=dsmQuery
+[debug] [2025-10-03T13:35:34.547Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions {"name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com","object":"a4c150d3-d1a4-454e-85c9-fc7ae4511d31.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","secret":"GEMINI_API_KEY","projectId":"dsmconsulta","version":"4"}],"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":10,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"}}
+[debug] [2025-10-03T13:35:36.184Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions 200
+[debug] [2025-10-03T13:35:36.184Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2"},"done":false}
+[debug] [2025-10-03T13:35:36.186Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:36.186Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:36.187Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 [none]
+[debug] [2025-10-03T13:35:36.651Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 200
+[debug] [2025-10-03T13:35:36.652Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759498534064423"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","state":"NOT_STARTED"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2025-10-03T13:35:37.158Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:35:37.158Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:37.159Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:37.159Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 [none]
+[debug] [2025-10-03T13:35:38.183Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 200
+[debug] [2025-10-03T13:35:38.184Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759498534064423"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03"},"done":false}
+[debug] [2025-10-03T13:35:39.190Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:35:39.191Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:39.191Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:39.191Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 [none]
+[debug] [2025-10-03T13:35:40.220Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 200
+[debug] [2025-10-03T13:35:40.220Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759498534064423"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03"},"done":false}
+[debug] [2025-10-03T13:35:42.230Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:35:42.231Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:42.231Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:42.232Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 [none]
+[debug] [2025-10-03T13:35:43.202Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 200
+[debug] [2025-10-03T13:35:43.202Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759498534064423"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03"},"done":false}
+[debug] [2025-10-03T13:35:47.212Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:35:47.212Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:47.213Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:47.213Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 [none]
+[debug] [2025-10-03T13:35:48.528Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 200
+[debug] [2025-10-03T13:35:48.529Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759498534064423"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03"},"done":false}
+[debug] [2025-10-03T13:35:56.534Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:35:56.535Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:56.535Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:35:56.535Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 [none]
+[debug] [2025-10-03T13:35:57.565Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 200
+[debug] [2025-10-03T13:35:57.565Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759498534064423"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/32460c8d-1815-47b3-9f61-eb2b855f3c03"},"done":false}
+[debug] [2025-10-03T13:36:07.582Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:36:07.583Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:36:07.583Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:36:07.583Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 [none]
+[debug] [2025-10-03T13:36:08.673Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 200
+[debug] [2025-10-03T13:36:08.673Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759498533753-640412d1652ca-0bebc2d6-28dbe7a1","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:35:34.395928088Z","endTime":"2025-10-03T13:35:57.125090776Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759498534064423"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"ARTIFACT_REGISTRY","message":"Deleting function artifacts in Artifact Registry","state":"COMPLETE"},{"name":"SERVICE","message":"Deleting Cloud Run service","state":"COMPLETE","resource":"projects/dsmconsulta/locations/us-central1/services/dsmquery"}],"operationType":"CREATE_FUNCTION"},"done":true,"error":{"code":3,"message":"Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account\n You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541.\n"}}
+[debug] [2025-10-03T13:36:08.673Z] Got source token undefined for region us-central1
+[error] Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account
+ You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541.
+
+[debug] [2025-10-03T13:36:08.680Z] Total Function Deployment time: 34142
+[debug] [2025-10-03T13:36:08.681Z] 1 Functions Deployed
+[debug] [2025-10-03T13:36:08.681Z] 1 Functions Errored
+[debug] [2025-10-03T13:36:08.681Z] 0 Function Deployments Aborted
+[debug] [2025-10-03T13:36:08.681Z] Average Function Deployment time: 34139
+[info] 
+[info] Functions deploy had errors with the following functions:
+	dsmQuery(us-central1)
+[debug] [2025-10-03T13:36:08.685Z] Not printing URL for HTTPS function. Typically this means it didn't match a filter or we failed deployment
+[debug] [2025-10-03T13:36:08.688Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:36:08.689Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:36:08.689Z] >>> [apiv2][query] GET https://artifactregistry.googleapis.com/v1/projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts [none]
+[debug] [2025-10-03T13:36:10.509Z] <<< [apiv2][status] GET https://artifactregistry.googleapis.com/v1/projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts 200
+[debug] [2025-10-03T13:36:10.510Z] <<< [apiv2][body] GET https://artifactregistry.googleapis.com/v1/projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts {"name":"projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts","format":"DOCKER","description":"This repository is created and used by Cloud Functions for storing function docker images.","labels":{"goog-managed-by":"cloudfunctions"},"createTime":"2025-08-26T21:11:47.992283Z","updateTime":"2025-10-02T23:40:07.757409Z","mode":"STANDARD_REPOSITORY","cleanupPolicies":{"firebase-functions-cleanup":{"id":"firebase-functions-cleanup","action":"DELETE","condition":{"tagState":"ANY","olderThan":"86400s"}}},"vulnerabilityScanningConfig":{"lastEnableTime":"2025-08-26T21:11:39.588700957Z","enablementState":"SCANNING_DISABLED","enablementStateReason":"API containerscanning.googleapis.com is not enabled."},"satisfiesPzi":true,"registryUri":"us-central1-docker.pkg.dev/dsmconsulta/gcf-artifacts"}
+[debug] [2025-10-03T13:36:10.511Z] Functions deploy failed.
+[debug] [2025-10-03T13:36:10.511Z] {
+  "endpoint": {
+    "id": "dsmQuery",
+    "project": "dsmconsulta",
+    "region": "us-central1",
+    "entryPoint": "dsmQuery",
+    "platform": "gcfv2",
+    "runtime": "nodejs22",
+    "httpsTrigger": {},
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "secretEnvironmentVariables": [
+      {
+        "key": "GEMINI_API_KEY",
+        "secret": "GEMINI_API_KEY",
+        "projectId": "dsmconsulta",
+        "version": "4"
+      }
+    ],
+    "serviceAccount": null,
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "timeoutSeconds": null,
+    "maxInstances": 10,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}",
+      "GCLOUD_PROJECT": "dsmconsulta",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/dsmconsulta/locations/us-central1/services/dsmQuery"
+    },
+    "codebase": "default",
+    "cpu": 1,
+    "targetedByOnly": false,
+    "hash": "32127579e05ba23e341601e68bbb550ffbfc9e7c"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "exit": 1,
+    "message": "Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account\n You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541.\n",
+    "original": {
+      "code": 3,
+      "message": "Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account\n You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/32460c8d-1815-47b3-9f61-eb2b855f3c03?project=786856571541.\n"
+    },
+    "status": 3,
+    "code": 3
+  }
+}
+[debug] [2025-10-03T13:36:10.514Z] Error: Failed to create function dsmQuery in region us-central1
+    at C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:306:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Fabricator.createV2Function (C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:290:30)
+    at async Fabricator.createEndpoint (C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:137:13)
+    at async handle (C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:89:17)
+[error] 
+[error] Error: There was an error deploying functions
+[debug] [2025-10-03T13:47:49.206Z] ----------------------------------------------------------------------
+[debug] [2025-10-03T13:47:49.213Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2025-10-03T13:47:49.214Z] CLI Version:   14.14.0
+[debug] [2025-10-03T13:47:49.215Z] Platform:      win32
+[debug] [2025-10-03T13:47:49.215Z] Node Version:  v22.13.1
+[debug] [2025-10-03T13:47:49.216Z] Time:          Fri Oct 03 2025 10:47:49 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-10-03T13:47:49.216Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-03T13:47:49.625Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-03T13:47:49.625Z] > authorizing via signed-in user (carlosbandeiraufpr@gmail.com)
+[debug] [2025-10-03T13:47:49.626Z] [iam] checking project dsmconsulta for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-10-03T13:47:49.628Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:49.629Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:49.631Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions [none]
+[debug] [2025-10-03T13:47:49.631Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions x-goog-quota-user=projects/dsmconsulta
+[debug] [2025-10-03T13:47:49.631Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-10-03T13:47:50.977Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions 200
+[debug] [2025-10-03T13:47:50.977Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-10-03T13:47:50.979Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:50.979Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:50.979Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-10-03T13:47:50.979Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-10-03T13:47:52.097Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-10-03T13:47:52.097Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/dsmconsulta/serviceAccounts/dsmconsulta@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'dsmconsulta'...
+[info] 
+[info] i  deploying functions 
+[info] +  functions: Finished running predeploy script. 
+[debug] [2025-10-03T13:47:52.118Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:52.119Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:52.120Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta [none]
+[debug] [2025-10-03T13:47:52.409Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta 200
+[debug] [2025-10-03T13:47:52.409Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta {"projectNumber":"786856571541","projectId":"dsmconsulta","lifecycleState":"ACTIVE","name":"dsmconsulta","labels":{"firebase":"enabled","firebase-core":"disabled","generative-language":"enabled"},"createTime":"2025-08-25T21:13:09.215874Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-10-03T13:47:52.421Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:52.421Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:52.421Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/dsmconsulta/adminSdkConfig [none]
+[debug] [2025-10-03T13:47:53.011Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/dsmconsulta/adminSdkConfig 200
+[debug] [2025-10-03T13:47:53.012Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/dsmconsulta/adminSdkConfig {"projectId":"dsmconsulta","storageBucket":"dsmconsulta.firebasestorage.app"}
+[debug] [2025-10-03T13:47:53.013Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:53.014Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:53.015Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs [none]
+[debug] [2025-10-03T13:47:53.744Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs 200
+[debug] [2025-10-03T13:47:53.745Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs {"configs":[{"name":"projects/dsmconsulta/configs/dsm"},{"name":"projects/dsmconsulta/configs/gemini"}]}
+[debug] [2025-10-03T13:47:53.746Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:53.746Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:53.746Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:53.747Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:53.747Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables [none]
+[debug] [2025-10-03T13:47:53.749Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables [none]
+[debug] [2025-10-03T13:47:54.076Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables 200
+[debug] [2025-10-03T13:47:54.077Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables {"variables":[{"name":"projects/dsmconsulta/configs/dsm/variables/key","updateTime":"2025-08-26T15:49:00.702499114Z"}]}
+[debug] [2025-10-03T13:47:54.078Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:54.079Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:54.079Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables/key [none]
+[debug] [2025-10-03T13:47:54.446Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables/key 200
+[debug] [2025-10-03T13:47:54.446Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/dsm/variables/key {"name":"projects/dsmconsulta/configs/dsm/variables/key","updateTime":"2025-08-26T15:49:00.702499114Z","text":"AIzaSyCeG4c7zncO9hf06HnbBsdDfJI_KLr8TB8"}
+[debug] [2025-10-03T13:47:54.871Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables 200
+[debug] [2025-10-03T13:47:54.872Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables {"variables":[{"name":"projects/dsmconsulta/configs/gemini/variables/key","updateTime":"2025-08-27T21:19:34.060983251Z"}]}
+[debug] [2025-10-03T13:47:54.872Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:54.872Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:47:54.873Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables/key [none]
+[debug] [2025-10-03T13:47:55.180Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables/key 200
+[debug] [2025-10-03T13:47:55.181Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/dsmconsulta/configs/gemini/variables/key {"name":"projects/dsmconsulta/configs/gemini/variables/key","updateTime":"2025-08-27T21:19:34.060983251Z","text":"AIzaSyD9Yhafm9YQkU6VPeuB7WzzNiMLN1ctEQY"}
+[debug] [2025-10-03T13:47:55.189Z] Validating nodejs source
+[debug] [2025-10-03T13:47:57.345Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-10-03T13:47:57.346Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-10-03T13:47:57.350Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-10-03T13:47:57.373Z] Found firebase-functions binary at 'D:\GitHub Projetos\dsmconsulta\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8022
+
+[debug] [2025-10-03T13:47:59.572Z] Got response from /__/functions.yaml {"endpoints":{"dsmQuery":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"secretEnvironmentVariables":[{"key":"GEMINI_API_KEY"}],"labels":{},"httpsTrigger":{},"entryPoint":"dsmQuery"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-10-03T13:48:03.702Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-03T13:48:03.703Z] > authorizing via signed-in user (carlosbandeiraufpr@gmail.com)
+[debug] [2025-10-03T13:48:03.703Z] [iam] checking project dsmconsulta for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-10-03T13:48:03.704Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:03.704Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:03.704Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions [none]
+[debug] [2025-10-03T13:48:03.705Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions x-goog-quota-user=projects/dsmconsulta
+[debug] [2025-10-03T13:48:03.705Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-10-03T13:48:04.677Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions 200
+[debug] [2025-10-03T13:48:04.678Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-10-03T13:48:04.679Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:04.680Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:04.680Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/dsmconsulta/instances pageSize=100&pageToken=
+[debug] [2025-10-03T13:48:06.146Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/dsmconsulta/instances 200
+[debug] [2025-10-03T13:48:06.146Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/dsmconsulta/instances {}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged D:\GitHub Projetos\dsmconsulta\functions (76.1 KB) for uploading 
+[debug] [2025-10-03T13:48:06.330Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:06.330Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:06.330Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/dsmconsulta/locations/-/functions [none]
+[debug] [2025-10-03T13:48:07.745Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/dsmconsulta/locations/-/functions 200
+[debug] [2025-10-03T13:48:07.745Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/dsmconsulta/locations/-/functions {}
+[debug] [2025-10-03T13:48:07.749Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:07.750Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:07.751Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-10-03T13:48:09.118Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/-/functions 200
+[debug] [2025-10-03T13:48:09.119Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/-/functions {}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2025-10-03T13:48:09.133Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:09.133Z] Checked if tokens are valid: true, expires at: 1759501560493
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2025-10-03T13:48:09.135Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:09.135Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:09.135Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-10-03T13:48:09.136Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity x-goog-quota-user=projects/786856571541
+[debug] [2025-10-03T13:48:09.136Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity {}
+[debug] [2025-10-03T13:48:09.142Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-10-03T13:48:09.143Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity x-goog-quota-user=projects/786856571541
+[debug] [2025-10-03T13:48:09.143Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity {}
+[debug] [2025-10-03T13:48:10.526Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2025-10-03T13:48:10.526Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-786856571541@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"116560666352400882006"}}
+[debug] [2025-10-03T13:48:10.803Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2025-10-03T13:48:10.803Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/786856571541/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-786856571541@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"109486349710682832997"}}
+[info] i  functions: ensuring required API secretmanager.googleapis.com is enabled... 
+[debug] [2025-10-03T13:48:10.811Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:10.811Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:10.812Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY/versions/latest [none]
+[debug] [2025-10-03T13:48:11.827Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY/versions/latest 200
+[debug] [2025-10-03T13:48:11.827Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY/versions/latest {"name":"projects/786856571541/secrets/GEMINI_API_KEY/versions/4","createTime":"2025-08-27T23:24:27.721564Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"163d611707035c\""}
+[debug] [2025-10-03T13:48:11.828Z] Resolved secret version of GEMINI_API_KEY to 4.
+[debug] [2025-10-03T13:48:11.832Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:11.832Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:11.832Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta [none]
+[debug] [2025-10-03T13:48:12.862Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta 200
+[debug] [2025-10-03T13:48:12.862Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta {"projectNumber":"786856571541","projectId":"dsmconsulta","lifecycleState":"ACTIVE","name":"dsmconsulta","labels":{"firebase":"enabled","firebase-core":"disabled","generative-language":"enabled"},"createTime":"2025-08-25T21:13:09.215874Z"}
+[debug] [2025-10-03T13:48:12.863Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:12.864Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:12.864Z] >>> [apiv2][query] GET https://compute.googleapis.com/compute/v1/projects/786856571541 [none]
+[debug] [2025-10-03T13:48:13.647Z] <<< [apiv2][status] GET https://compute.googleapis.com/compute/v1/projects/786856571541 403
+[debug] [2025-10-03T13:48:13.647Z] <<< [apiv2][body] GET https://compute.googleapis.com/compute/v1/projects/786856571541 {"error":{"code":403,"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/786856571541","service":"compute.googleapis.com","serviceTitle":"Compute Engine API","activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541","containerInfo":"786856571541"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541"}]}]}}
+[debug] [2025-10-03T13:48:13.649Z] unable to look up default compute service account. Falling back to 786856571541-compute@developer.gserviceaccount.com. Error: {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":403,"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/786856571541","service":"compute.googleapis.com","serviceTitle":"Compute Engine API","activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541","containerInfo":"786856571541"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541"}]}]}},"response":{"statusCode":403}},"exit":1,"message":"Request to https://compute.googleapis.com/compute/v1/projects/786856571541 had HTTP Error: 403, Compute Engine API has not been used in project 786856571541 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=786856571541 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":403}
+[info] i  functions: ensuring 786856571541-compute@developer.gserviceaccount.com access to secret GEMINI_API_KEY. 
+[debug] [2025-10-03T13:48:13.651Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:13.652Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:13.652Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY:getIamPolicy [none]
+[debug] [2025-10-03T13:48:14.161Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY:getIamPolicy 200
+[debug] [2025-10-03T13:48:14.161Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/dsmconsulta/secrets/GEMINI_API_KEY:getIamPolicy {"version":1,"etag":"BwY9X+JOn8U=","bindings":[{"role":"roles/secretmanager.secretAccessor","members":["serviceAccount:786856571541-compute@developer.gserviceaccount.com"]}]}
+[info] +  secretmanager: Granted roles/secretmanager.secretAccessor on projects/dsmconsulta/secrets/GEMINI_API_KEY to 786856571541-compute@developer.gserviceaccount.com 
+[info] +  functions: ensured 786856571541-compute@developer.gserviceaccount.com access to GEMINI_API_KEY. 
+[debug] [2025-10-03T13:48:14.167Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:14.168Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:14.168Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/dsmconsulta/billingInfo [none]
+[debug] [2025-10-03T13:48:15.561Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/dsmconsulta/billingInfo 200
+[debug] [2025-10-03T13:48:15.562Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/dsmconsulta/billingInfo {"name":"projects/dsmconsulta/billingInfo","projectId":"dsmconsulta","billingAccountName":"billingAccounts/01B9C5-278D78-3DC3D2","billingEnabled":true}
+[debug] [2025-10-03T13:48:15.565Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2025-10-03T13:48:15.566Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:15.567Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:15.567Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions [none]
+[debug] [2025-10-03T13:48:15.567Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions x-goog-quota-user=projects/dsmconsulta
+[debug] [2025-10-03T13:48:15.567Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2025-10-03T13:48:15.758Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions 200
+[debug] [2025-10-03T13:48:15.758Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dsmconsulta:testIamPermissions {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2025-10-03T13:48:15.759Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2025-10-03T13:48:15.761Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:15.761Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:15.761Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2025-10-03T13:48:17.172Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2025-10-03T13:48:17.172Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/59b66c51-b9ec-4d40-a814-d37261939010.zip?GoogleAccessId=service-786856571541@gcf-admin-robot.iam.gserviceaccount.com&Expires=1759501095&Signature=KOmXWamRNQgCyY4Q9FBXGXWHqJwc%2FtWYWOx0HQeaauZwpI1Xn5AJpu6Y3cZpE88rjCpXeCCrNGqnO7oThG6tT3bCgBHrJf19ouSNMQcWAdMgZUgMd%2Bs4yIlWwAdd%2Byj%2BHUiROUzTbudVz%2Flm5dd3Yms1yanYLGgD%2Bj9gzyLgo1i2ID2YO3XDvV5NGL%2FRJiEbKVGgD%2FS3UECE%2BT2bknxsd%2BcqFevbRUlM7PHYYQ0ATHN06DEFFenTcOcBbrJhUhqFmLClZjtg%2BcA8ABh1DI3uU8rjW03ahpNPoh8Gacx6I1%2B4sWWQBJ%2BC7L981z6wonSDRwwQf%2B6UcmtGJa7ieV%2F3hg%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com","object":"59b66c51-b9ec-4d40-a814-d37261939010.zip"}}
+[debug] [2025-10-03T13:48:17.174Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/59b66c51-b9ec-4d40-a814-d37261939010.zip GoogleAccessId=service-786856571541%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1759501095&Signature=KOmXWamRNQgCyY4Q9FBXGXWHqJwc%2FtWYWOx0HQeaauZwpI1Xn5AJpu6Y3cZpE88rjCpXeCCrNGqnO7oThG6tT3bCgBHrJf19ouSNMQcWAdMgZUgMd%2Bs4yIlWwAdd%2Byj%2BHUiROUzTbudVz%2Flm5dd3Yms1yanYLGgD%2Bj9gzyLgo1i2ID2YO3XDvV5NGL%2FRJiEbKVGgD%2FS3UECE%2BT2bknxsd%2BcqFevbRUlM7PHYYQ0ATHN06DEFFenTcOcBbrJhUhqFmLClZjtg%2BcA8ABh1DI3uU8rjW03ahpNPoh8Gacx6I1%2B4sWWQBJ%2BC7L981z6wonSDRwwQf%2B6UcmtGJa7ieV%2F3hg%3D%3D
+[debug] [2025-10-03T13:48:17.175Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/59b66c51-b9ec-4d40-a814-d37261939010.zip [stream]
+[debug] [2025-10-03T13:48:18.648Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/59b66c51-b9ec-4d40-a814-d37261939010.zip 200
+[debug] [2025-10-03T13:48:18.648Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com/59b66c51-b9ec-4d40-a814-d37261939010.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 22 (2nd Gen) function dsmQuery(us-central1)... 
+[debug] [2025-10-03T13:48:18.666Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:18.666Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:18.667Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions functionId=dsmQuery
+[debug] [2025-10-03T13:48:18.667Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions {"name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-uploads-786856571541.us-central1.cloudfunctions.appspot.com","object":"59b66c51-b9ec-4d40-a814-d37261939010.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","secret":"GEMINI_API_KEY","projectId":"dsmconsulta","version":"4"}],"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":10,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"}}
+[debug] [2025-10-03T13:48:20.332Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions 200
+[debug] [2025-10-03T13:48:20.333Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/functions {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2"},"done":false}
+[debug] [2025-10-03T13:48:20.335Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:20.335Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:20.336Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 [none]
+[debug] [2025-10-03T13:48:21.345Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 200
+[debug] [2025-10-03T13:48:21.346Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759499298155231"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Creating build","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02"},"done":false}
+[debug] [2025-10-03T13:48:21.859Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:48:21.860Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:21.860Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:21.860Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 [none]
+[debug] [2025-10-03T13:48:22.826Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 200
+[debug] [2025-10-03T13:48:22.826Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759499298155231"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02"},"done":false}
+[debug] [2025-10-03T13:48:23.829Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:48:23.830Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:23.831Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:23.831Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 [none]
+[debug] [2025-10-03T13:48:24.796Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 200
+[debug] [2025-10-03T13:48:24.796Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759499298155231"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02"},"done":false}
+[debug] [2025-10-03T13:48:26.801Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:48:26.802Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:26.802Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:26.802Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 [none]
+[debug] [2025-10-03T13:48:27.785Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 200
+[debug] [2025-10-03T13:48:27.785Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759499298155231"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02"},"done":false}
+[debug] [2025-10-03T13:48:31.791Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:48:31.792Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:31.792Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:31.793Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 [none]
+[debug] [2025-10-03T13:48:32.719Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 200
+[debug] [2025-10-03T13:48:32.719Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759499298155231"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/786856571541/locations/us-central1/builds/5e19c36a-43fb-4242-a760-c2f87ba6af02"},"done":false}
+[debug] [2025-10-03T13:48:40.721Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:48:40.722Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:40.722Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:40.723Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 [none]
+[debug] [2025-10-03T13:48:41.937Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 200
+[debug] [2025-10-03T13:48:41.937Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759499298155231"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"ARTIFACT_REGISTRY","state":"NOT_STARTED"},{"name":"SERVICE","message":"Deleting Cloud Run service","state":"COMPLETE","resource":"projects/dsmconsulta/locations/us-central1/services/dsmquery"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2025-10-03T13:48:51.954Z] [create-default-us-central1-dsmQuery] Retrying task index 0
+[debug] [2025-10-03T13:48:51.954Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:51.955Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:51.955Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 [none]
+[debug] [2025-10-03T13:48:53.085Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 200
+[debug] [2025-10-03T13:48:53.085Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180 {"name":"projects/dsmconsulta/locations/us-central1/operations/operation-1759499297871-640415aa1d7a5-7764b3d4-4ad27180","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-10-03T13:48:18.435737874Z","endTime":"2025-10-03T13:48:40.304948451Z","target":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/dsmconsulta/locations/us-central1/functions/dsmQuery","buildConfig":{"runtime":"nodejs22","entryPoint":"dsmQuery","source":{"storageSource":{"bucket":"gcf-v2-sources-786856571541-us-central1","object":"dsmQuery/function-source.zip","generation":"1759499298155231"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/dsmconsulta/serviceAccounts/786856571541-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/dsmconsulta/locations/us-central1/services/dsmquery","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}","GCLOUD_PROJECT":"dsmconsulta","EVENTARC_CLOUD_EVENT_SOURCE":"projects/dsmconsulta/locations/us-central1/services/dsmQuery","FUNCTION_TARGET":"dsmQuery","LOG_EXECUTION_ID":"true"},"maxInstanceCount":10,"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"786856571541-compute@developer.gserviceaccount.com","availableMemory":"256Mi","secretEnvironmentVariables":[{"key":"GEMINI_API_KEY","projectId":"dsmconsulta","secret":"GEMINI_API_KEY","version":"4"}],"maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"32127579e05ba23e341601e68bbb550ffbfc9e7c"},"environment":"GEN_2"},"stages":[{"name":"ARTIFACT_REGISTRY","message":"Deleting function artifacts in Artifact Registry","state":"COMPLETE"},{"name":"SERVICE","message":"Deleting Cloud Run service","state":"COMPLETE","resource":"projects/dsmconsulta/locations/us-central1/services/dsmquery"}],"operationType":"CREATE_FUNCTION"},"done":true,"error":{"code":3,"message":"Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account\n You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541.\n"}}
+[debug] [2025-10-03T13:48:53.085Z] Got source token undefined for region us-central1
+[error] Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account
+ You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541.
+
+[debug] [2025-10-03T13:48:53.093Z] Total Function Deployment time: 34428
+[debug] [2025-10-03T13:48:53.093Z] 1 Functions Deployed
+[debug] [2025-10-03T13:48:53.093Z] 1 Functions Errored
+[debug] [2025-10-03T13:48:53.093Z] 0 Function Deployments Aborted
+[debug] [2025-10-03T13:48:53.094Z] Average Function Deployment time: 34425
+[info] 
+[info] Functions deploy had errors with the following functions:
+	dsmQuery(us-central1)
+[debug] [2025-10-03T13:48:53.098Z] Not printing URL for HTTPS function. Typically this means it didn't match a filter or we failed deployment
+[debug] [2025-10-03T13:48:53.100Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:53.100Z] Checked if tokens are valid: true, expires at: 1759501560493
+[debug] [2025-10-03T13:48:53.100Z] >>> [apiv2][query] GET https://artifactregistry.googleapis.com/v1/projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts [none]
+[debug] [2025-10-03T13:48:55.026Z] <<< [apiv2][status] GET https://artifactregistry.googleapis.com/v1/projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts 200
+[debug] [2025-10-03T13:48:55.027Z] <<< [apiv2][body] GET https://artifactregistry.googleapis.com/v1/projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts {"name":"projects/dsmconsulta/locations/us-central1/repositories/gcf-artifacts","format":"DOCKER","description":"This repository is created and used by Cloud Functions for storing function docker images.","labels":{"goog-managed-by":"cloudfunctions"},"createTime":"2025-08-26T21:11:47.992283Z","updateTime":"2025-10-02T23:40:07.757409Z","mode":"STANDARD_REPOSITORY","cleanupPolicies":{"firebase-functions-cleanup":{"id":"firebase-functions-cleanup","action":"DELETE","condition":{"tagState":"ANY","olderThan":"86400s"}}},"vulnerabilityScanningConfig":{"lastEnableTime":"2025-08-26T21:11:39.588700957Z","enablementState":"SCANNING_DISABLED","enablementStateReason":"API containerscanning.googleapis.com is not enabled."},"satisfiesPzi":true,"registryUri":"us-central1-docker.pkg.dev/dsmconsulta/gcf-artifacts"}
+[debug] [2025-10-03T13:48:55.027Z] Functions deploy failed.
+[debug] [2025-10-03T13:48:55.028Z] {
+  "endpoint": {
+    "id": "dsmQuery",
+    "project": "dsmconsulta",
+    "region": "us-central1",
+    "entryPoint": "dsmQuery",
+    "platform": "gcfv2",
+    "runtime": "nodejs22",
+    "httpsTrigger": {},
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "secretEnvironmentVariables": [
+      {
+        "key": "GEMINI_API_KEY",
+        "secret": "GEMINI_API_KEY",
+        "projectId": "dsmconsulta",
+        "version": "4"
+      }
+    ],
+    "serviceAccount": null,
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "timeoutSeconds": null,
+    "maxInstances": 10,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"dsmconsulta\",\"storageBucket\":\"dsmconsulta.firebasestorage.app\"}",
+      "GCLOUD_PROJECT": "dsmconsulta",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/dsmconsulta/locations/us-central1/services/dsmQuery"
+    },
+    "codebase": "default",
+    "cpu": 1,
+    "targetedByOnly": false,
+    "hash": "32127579e05ba23e341601e68bbb550ffbfc9e7c"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "exit": 1,
+    "message": "Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account\n You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541.\n",
+    "original": {
+      "code": 3,
+      "message": "Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account\n You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/5e19c36a-43fb-4242-a760-c2f87ba6af02?project=786856571541.\n"
+    },
+    "status": 3,
+    "code": 3
+  }
+}
+[debug] [2025-10-03T13:48:55.031Z] Error: Failed to create function dsmQuery in region us-central1
+    at C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:306:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Fabricator.createV2Function (C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:290:30)
+    at async Fabricator.createEndpoint (C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:137:13)
+    at async handle (C:\Users\carlo\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:89:17)
+[error] 
+[error] Error: There was an error deploying functions

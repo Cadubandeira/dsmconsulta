@@ -28,6 +28,9 @@ app.post('/', async (req, res) => {
     // 1. Lógica Singleton: Inicializa o modelo APENAS no runtime
     if (!model) {
         try {
+            // ADICIONE ESTA LINHA PARA FORÇAR O DEPLOY
+            console.log("Forçando atualização do código com modelo 2.5-flash."); 
+            
             if (!process.env.GEMINI_API_KEY) {
                 // Isso só será atingido se o Secret Manager falhar no runtime
                 throw new Error("GEMINI_API_KEY not set in runtime environment.");
