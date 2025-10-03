@@ -1,8 +1,5 @@
 {
   "functions": {
-    "predeploy": [
-      
-    ]
     "source": "functions",
     "gen": "2",
     "region": "us-central1",
